@@ -1,0 +1,137 @@
+#============================================================================
+# SERVER
+#============================================================================
+server:
+  port: 9000
+  tomcat:
+    max-threads : 4000
+  session:
+    timeout: 1800         # session timeout in second
+    cookie:
+      max-age: 1800     # Maximum age of the session cookie in seconds. also add if server.session.timeout not working
+
+#============================================================================
+# SPRING
+#============================================================================
+spring:
+  application:
+    name : fauzi-jenius-oauth2
+  profiles:
+    active : local
+  datasource:
+    driver-class-name : org.postgresql.Driver
+    url : jdbc:postgresql://${db.host}:${db.port}/${db.name}
+    username : ${db.username}
+    password : ${db.password}
+    hikari:
+      minimumIdle: 1
+      maximumPoolSize: 250
+      idleTimeout: 150000
+      poolName: kf-security-oauth2
+      maxLifetime: 2000000
+      connectionTimeout: 600000
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        naming_strategy : org.hibernate.cfg.EJB3NamingStrategy
+        dialect : org.hibernate.dialect.PostgreSQL9Dialect
+        ddl-auto : validate     # Hibernate ddl auto (create, create-drop, validate, update)
+
+#============================================================================
+# DATABASE
+#============================================================================
+db:
+  name : test_security
+  host : 180.250.242.163
+  port : 5432
+  username : postgres
+  password : S1gm4etc2018!
+  auto-reconnect : true
+  ssl : false
+
+#============================================================================
+# ACTUATOR
+#============================================================================
+management:
+  context-path : /actuator
+  security:
+    enabled: false
+    roles: ROLE_ACTUATOR
+#============================================================================
+# LOGGER
+#============================================================================
+logging:
+  config: classpath:logback-spring.xml
+  file : ${log.file.path}
+  api :
+    base-path : ${log.base.path}
+
+#============================================================================
+# LOG FILE
+#============================================================================
+log :
+  file :
+    path : /home/fauzi/sec-oauth2.log
+  base:
+    path : http://localhost:9001/kf-api-logger
+
+#============================================================================
+# THREAD
+#============================================================================
+thread:
+  corepoolsize : 1
+  maxpoolsize : 5
+  queuecapacity : 10
+
+#============================================================================
+# OAUTH
+#============================================================================
+oauth:
+  resource-id : fauzi-jenius-resource
+  token-validity-in-seconds : 1800
+
+#============================================================================
+# SWAGGER
+#============================================================================
+swagger :
+  vendor :
+    name : Fauzi
+    value : 1.0.0
+  metadata :
+    title : KF - API OAUTH2
+    description : OAuth 2 Services
+    version : 1.0.0
+    tos : This Documentation is Only Available on Development Phase
+    license : Apache License Version 2.0
+    license-url : https://www.apache.org/licenses/LICENSE-2.0
+    contact :
+      name : Achmad Fauzi
+      url : https://github.com/KNIGHTMASTER
+      email : fauzi.knightmaster.achmad@gmail.com
+
+#============================================================================
+# DISCOVERY CLIENT
+#============================================================================
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#    registerWithEureka: true
+#    fetchRegistry: true
+#  instance :
+#    home-page-url : http://localhost:10002/
+#    status-page-url-path : http://localhost:10002/actuator/info
+#    health-check-url-path : http://localhost:10002/actuator/health
+
+#============================================================================
+# INFO
+#============================================================================
+#info:
+#  app:
+#    name: KF Security OAuth 2.0
+#    description: API for Authentication Service
+#    version: 1.0.0
