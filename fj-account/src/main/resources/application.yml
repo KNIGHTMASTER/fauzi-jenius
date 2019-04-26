@@ -30,14 +30,14 @@ spring:
 #============================================================================
 db:
   name : fauzi-account-db
-  host : localhost
+  host : 180.250.19.229
   port : 27017
   authentication-database : admin
-#  username : mongo
-#  password : mongoP@ssw0rd
+  username : mongo
+  password : mongoP@ssw0rd
   repositories :
     enabled : true
-  uri : mongodb://localhost/fauzi-account-db
+  uri : mongodb://180.250.19.229/fauzi-account-db
 
 #============================================================================
 # LOGGING
