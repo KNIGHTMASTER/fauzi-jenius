@@ -29,7 +29,7 @@ public class RegisterEndPointImpl implements IRegisterEndPoint {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RegisterEndPointImpl.class);
 
-    @RequestLogger(name = "|security|register")
+    @RequestLogger(name = "security|register")
     @Override
     public ResponseEntity register(@RequestBody RequestRegisterDTO p_Request) throws EndPointException {
         try {

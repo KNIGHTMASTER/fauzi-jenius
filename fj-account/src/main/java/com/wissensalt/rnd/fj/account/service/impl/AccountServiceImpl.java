@@ -37,25 +37,6 @@ public class AccountServiceImpl implements IAccountService {
         return accountDAO.findAll();
     }
 
-    @Override
-    public Account findByUserName(String p_UserName) throws ServiceException {
-        try {
-            return accountDAO.findByUserName(p_UserName);
-        } catch (DAOException e) {
-            LOGGER.error("Error find account by username {} : {}", p_UserName, e.toString());
-            return null;
-        }
-    }
-
-    @Override
-    public Account findByEmailAddress(String p_EmailAddress) throws ServiceException {
-        try {
-            return accountDAO.findByEmailAddress(p_EmailAddress);
-        } catch (DAOException e) {
-            LOGGER.error("Error find account by email address {} : {}", p_EmailAddress, e.toString());
-            return null;
-        }
-    }
 
     @Override
     public Account findByAccountNumber(String p_AccountNumber) throws ServiceException {

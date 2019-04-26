@@ -1,0 +1,85 @@
+#============================================================================
+# SERVER
+#============================================================================
+server:
+  port: 10000
+#============================================================================
+# SPRING
+#============================================================================
+spring:
+  boot :
+    admin :
+      client :
+        url : http://localhost:9090
+  application:
+    name : kf-api-gateway
+  profiles:
+    active : local
+  management:
+    security:
+      enabled: false
+#============================================================================
+# LOGGER
+#============================================================================
+logging:
+  config: classpath:logback-spring.xml
+  file : ${log.file.path}
+
+#============================================================================
+# LOG FILE
+#============================================================================
+log :
+  file :
+    path : /home/fauzi/fj/gateway/fj-api-gateway.log
+
+#============================================================================
+# ZUUL
+#============================================================================
+zuul:
+  sensitive-headers: Cookie, SetCookie
+#  add-proxy-headers: true
+  prefix: /gateway
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+    max-total-connections: 200
+    max-per-route-connections: 20
+    time-unit: MILLISECONDS
+    time-to-live: 10000
+  routes:
+    logger:
+      path : /logger/**
+      serviceId : fauzi-jenius-logger
+    account:
+      path : /account/**
+      serviceId : fauzi-jenius-account
+    security:
+      path : /security/**
+      serviceId : fauzi-jenius-oauth2
+#============================================================================
+# EUREKA
+#============================================================================
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    registerWithEureka: true
+    fetchRegistry: true
+
+#============================================================================
+# INFO
+#============================================================================
+info:
+  app:
+    name: API Gateway Application
+    description: Zuul KF API Gateway Application
+    version: 1.0.0
+
+#============================================================================
+# RIBBON FOR ZUUL
+#============================================================================
+ribbon:
+  eager-load:
+    enabled : true
+  ReadTimeout : 6000
+  ConnectTimeout : 6000

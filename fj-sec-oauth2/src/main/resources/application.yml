@@ -16,8 +16,6 @@ server:
 spring:
   application:
     name : fauzi-jenius-oauth2
-  profiles:
-    active : local
   datasource:
     driver-class-name : org.postgresql.Driver
     url : jdbc:postgresql://${db.host}:${db.port}/${db.name}
@@ -45,7 +43,7 @@ spring:
 # DATABASE
 #============================================================================
 db:
-  name : test_security
+  name : fauzi_jenius_security
   host : 180.250.242.163
   port : 5432
   username : postgres
@@ -75,9 +73,9 @@ logging:
 #============================================================================
 log :
   file :
-    path : /home/fauzi/sec-oauth2.log
+    path : /home/fauzi/fj/security/fauzi-security-oauth2.log
   base:
-    path : http://localhost:9001/kf-api-logger
+    path : http://localhost:9001/fauzi-api-logger
 
 #============================================================================
 # THREAD
@@ -102,7 +100,7 @@ swagger :
     name : Fauzi
     value : 1.0.0
   metadata :
-    title : KF - API OAUTH2
+    title : Fauzi - Jenius - API OAUTH2
     description : OAuth 2 Services
     version : 1.0.0
     tos : This Documentation is Only Available on Development Phase
@@ -126,12 +124,3 @@ swagger :
 #    home-page-url : http://localhost:10002/
 #    status-page-url-path : http://localhost:10002/actuator/info
 #    health-check-url-path : http://localhost:10002/actuator/health
-
-#============================================================================
-# INFO
-#============================================================================
-#info:
-#  app:
-#    name: KF Security OAuth 2.0
-#    description: API for Authentication Service
-#    version: 1.0.0

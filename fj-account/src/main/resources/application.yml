@@ -55,6 +55,8 @@ logging:
 log :
   file :
     path : /home/fauzi/fj-account/fj-account.log
+  base:
+    path : http://localhost:9001/fauzi-api-logger
 
 
 #============================================================================
@@ -94,3 +96,7 @@ swagger :
       name : Achmad Fauzi
       url : https://github.com/KNIGHTMASTER/fauzi-jenius
       email : fauzi.knightmaster.achmad@gmail.com
+
+jedis:
+  host: localhost
+  port: 6379

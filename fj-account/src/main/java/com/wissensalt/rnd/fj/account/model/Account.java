@@ -1,6 +1,5 @@
 package com.wissensalt.rnd.fj.account.model;
 
-import com.mongodb.lang.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -30,7 +29,6 @@ public class Account implements Serializable {
     private ObjectId id;
 
     @Indexed(name = "userNameIndex", direction = IndexDirection.ASCENDING, unique = true)
-    @Nullable
     private String userName;
 
     @Indexed(unique = true)

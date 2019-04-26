@@ -3,18 +3,18 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- Log message format -->
         <encoder>
-            <pattern>KF-SECURITY | %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>FJ-SECURITY | %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="com.telkomsigma.kf.security" level="INFO" />
+    <logger name="com.wissensalt.rnd.fj.sec.oauth2" level="INFO" />
 
     <!-- Setting the logging level to INFO for Spring Framework-->
     <logger name="logging.level.org.springframework" level="DEBUG" />
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
-            <pattern>KF-SECURITY | %d{dd-MM-yyyy} %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>FJ-SECURITY | %d{dd-MM-yyyy} %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
         <file>${LOG_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">

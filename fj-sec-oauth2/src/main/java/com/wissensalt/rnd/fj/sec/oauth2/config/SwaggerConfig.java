@@ -97,20 +97,6 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public Docket actuatorDocket() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("ACTUATOR")
-                .produces(Collections.singleton(MediaType.APPLICATION_JSON_VALUE))
-                .consumes(Collections.singleton(MediaType.APPLICATION_JSON_VALUE))
-                .select()
-                .paths(PathSelectors.regex("/actuator.*"))
-                .apis(RequestHandlerSelectors.any())
-                .build().directModelSubstitute(LocalDate.class, String.class)
-                .genericModelSubstitutes(ResponseEntity.class)
-                .apiInfo(apiInfo());
-    }
-
-    @Bean
     public Docket publicDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("PUBLIC")

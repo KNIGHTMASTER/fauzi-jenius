@@ -16,8 +16,6 @@ public interface IAccountDAO extends MongoRepository<Account, ObjectId> {
 
     Account findByUserName(String p_UserName) throws DAOException;
 
-    Account findByEmailAddress(String p_EmailAddress) throws DAOException;
-
     Account findByAccountNumber(String p_AccountNumber) throws DAOException;
 
     Account findByIdentityNumber(String p_IdentityNumber) throws DAOException;
