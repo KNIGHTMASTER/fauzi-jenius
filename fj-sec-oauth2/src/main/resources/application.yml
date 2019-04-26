@@ -25,7 +25,7 @@ spring:
       minimumIdle: 1
       maximumPoolSize: 250
       idleTimeout: 150000
-      poolName: kf-security-oauth2
+      poolName: fj-security-oauth2
       maxLifetime: 2000000
       connectionTimeout: 600000
   jpa:
@@ -44,7 +44,7 @@ spring:
 #============================================================================
 db:
   name : fauzi_jenius_security
-  host : localhost
+  host : 192.168.20.10
   port : 5432
   username : postgres
   password : S1gm4etc2018!
