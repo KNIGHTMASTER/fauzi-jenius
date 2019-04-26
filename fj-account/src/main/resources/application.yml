@@ -70,8 +70,8 @@ security:
       loginPath : /login
     client:
       grant-type : password
-      clientId: fj_client
-      clientSecret: fj-secret
+      clientId: fauzi-oauth-client
+      clientSecret: fauzi-jenius-secret
       accessTokenUri: http://localhost:9000/oauth/token
       userAuthorizationUri: http://localhost:9000/oauth/authorize
     resource:
