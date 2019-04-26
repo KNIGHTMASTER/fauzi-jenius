@@ -42,7 +42,7 @@ db:
   username : mongo
   password : mongoP@ssword
   repositories : true
-  uri : mongodb://localhost/fj-api-log
+  uri : mongodb://180.250.19.229/fj-api-log
 
 #============================================================================
 # LOGGING
@@ -67,8 +67,8 @@ log :
 rabbitmq:
   host : 180.250.19.229
   port : 5672
-  username : guest
-  password : guest
+  username : user-amqp
+  password : user-amqp123
   fanout:
     exchange:
       api-logger : fanout-exchange-api-logger

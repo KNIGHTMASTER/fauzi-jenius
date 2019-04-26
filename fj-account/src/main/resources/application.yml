@@ -70,8 +70,8 @@ security:
       loginPath : /login
     client:
       grant-type : password
-      clientId: oc_client
-      clientSecret: oc-secret
+      clientId: fj_client
+      clientSecret: fj-secret
       accessTokenUri: http://localhost:9000/oauth/token
       userAuthorizationUri: http://localhost:9000/oauth/authorize
     resource:
