@@ -33,7 +33,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/hello/").permitAll()
-                .antMatchers("/account/**").hasAnyRole("USER")
+                .antMatchers("/account/**").hasAnyRole("ADMIN")
                 .antMatchers("/principal/**").authenticated()
                 .antMatchers(
                         "/v2/api-docs",
