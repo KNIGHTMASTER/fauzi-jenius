@@ -39,8 +39,8 @@ db:
   port : 27017
   database : fj-api-log
   authentication-database : admin
-#  username : mongo
-#  password : mongoP@ssword
+  username : mongo
+  password : mongoP@ssword
   repositories : true
   uri : mongodb://localhost/fj-api-log
 
