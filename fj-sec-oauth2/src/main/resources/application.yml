@@ -114,13 +114,9 @@ swagger :
 #============================================================================
 # DISCOVERY CLIENT
 #============================================================================
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/
-#    registerWithEureka: true
-#    fetchRegistry: true
-#  instance :
-#    home-page-url : http://localhost:10002/
-#    status-page-url-path : http://localhost:10002/actuator/info
-#    health-check-url-path : http://localhost:10002/actuator/health
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
