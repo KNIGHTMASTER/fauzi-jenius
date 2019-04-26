@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.DispatcherServlet;
         "com.wissensalt.rnd.fj.account.config"
 }, lazyInit = true)
 @EntityScan(basePackages = {"com.wissensalt.rnd.fj.shared.data.model"})
+@EnableRedisRepositories
 @EnableMongoRepositories(basePackages = {"com.wissensalt.rnd.fj.shared.dao"})
 @EnableMongoAuditing
 @SpringBootApplication

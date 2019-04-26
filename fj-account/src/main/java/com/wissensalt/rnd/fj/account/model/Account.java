@@ -2,6 +2,7 @@ package com.wissensalt.rnd.fj.account.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
@@ -15,6 +16,7 @@ import java.io.Serializable;
  *
  * @author <a href="mailto:fauzi.knightmaster.achmad@gmail.com">Achmad Fauzi</a>
  */
+@ToString
 @Getter
 @Setter
 @Document(collection = "account")

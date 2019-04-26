@@ -1,6 +1,7 @@
 package com.wissensalt.rnd.fj.account.service.impl;
 
 import com.wissensalt.rnd.fj.account.dao.IAccountDAO;
+import com.wissensalt.rnd.fj.account.dao.IRedisAccountDAO;
 import com.wissensalt.rnd.fj.account.dto.RequestInsertAccountDTO;
 import com.wissensalt.rnd.fj.account.dto.RequestPaginationDTO;
 import com.wissensalt.rnd.fj.account.mapper.AccountMapper;
@@ -27,6 +28,7 @@ import java.util.List;
 @Service
 public class AccountServiceImpl implements IAccountService {
 
+    @Autowired private IRedisAccountDAO redisAccountDAO;
     @Autowired private IAccountDAO accountDAO;
     @Autowired private AccountMapper accountMapper;
 
@@ -34,32 +36,51 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public List<Account> findAll() throws ServiceException {
-        return accountDAO.findAll();
+        List<Account> accounts = (List<Account>) redisAccountDAO.findAll();
+        LOGGER.info("redis find all "+accounts.size());
+        if (accounts.size() > 0) {
+            return accounts;
+        }else {
+            return accountDAO.findAll();
+        }
     }
 
 
     @Override
     public Account findByAccountNumber(String p_AccountNumber) throws ServiceException {
+        Account result = null;
         try {
-            return accountDAO.findByAccountNumber(p_AccountNumber);
+            result = redisAccountDAO.findByAccountNumber(p_AccountNumber);
+            LOGGER.info("redis account by account number found "+result.toString());
+            if (result == null) {
+                result = accountDAO.findByAccountNumber(p_AccountNumber);
+            }
         } catch (DAOException e) {
             LOGGER.error("Error find account by account number {} : {}", p_AccountNumber, e.toString());
             return null;
         }
+        return result;
     }
 
     @Override
     public Account findByIdentityNumber(String p_IdentityNumber) throws ServiceException {
+        Account result = null;
         try {
-            return accountDAO.findByIdentityNumber(p_IdentityNumber);
+            result = redisAccountDAO.findByIdentityNumber(p_IdentityNumber);
+            LOGGER.info("redis account by identity number found "+result.toString());
+            if (result == null) {
+                result = accountDAO.findByIdentityNumber(p_IdentityNumber);
+            }
         } catch (DAOException e) {
             LOGGER.error("Error find account by identity number {} : {}", p_IdentityNumber, e.toString());
             return null;
         }
+        return result;
     }
 
     @Override
     public Page<Account> findPagination(RequestPaginationDTO p_RequestPagination) throws ServiceException {
+        Page<Account> result = null;
         PageRequest pageRequest = PageRequest.of(
                 p_RequestPagination.getOffset(),
                 p_RequestPagination.getLimit(),
@@ -67,16 +88,22 @@ public class AccountServiceImpl implements IAccountService {
                 p_RequestPagination.getSort()
         );
         try {
-            return accountDAO.findPagination(pageRequest);
+            result = redisAccountDAO.findPagination(pageRequest);
+            LOGGER.info("redis account pagination found "+result.getContent().size());
+            if (result == null) {
+                result =  accountDAO.findPagination(pageRequest);
+            }
         } catch (DAOException e) {
             LOGGER.error("Error find pagination account : {}", e.toString());
             return null;
         }
+        return result;
     }
 
     @Transactional
     @Override
     public Account insert(RequestInsertAccountDTO p_Request) throws ServiceException {
+        redisAccountDAO.save(accountMapper.convert(p_Request));
         return accountDAO.insert(accountMapper.convert(p_Request));
     }
 
@@ -90,6 +117,7 @@ public class AccountServiceImpl implements IAccountService {
             LOGGER.error("Error find Account by User Name {} : {}", p_Request.getUserName(), e.toString());
         }
         if (account != null) {
+            redisAccountDAO.save(accountMapper.convert(p_Request));
             accountDAO.insert(accountMapper.convert(p_Request));
         }
         return null;
@@ -106,6 +134,7 @@ public class AccountServiceImpl implements IAccountService {
         }
 
         if (account != null) {
+            redisAccountDAO.delete(account);
             accountDAO.deleteById(account.getId());
         }else {
             return false;

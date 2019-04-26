@@ -13,6 +13,7 @@ import com.wissensalt.rnd.fj.util.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,6 +59,7 @@ public class AccountEndPointImpl implements IAccountEndPoint {
         return result;
     }
 
+    @Cacheable(value = "accounts")
     @RequestLogger(name = "account|find-all")
     @Override
     public ResponseEntity findAll() throws EndPointException {
@@ -76,6 +78,7 @@ public class AccountEndPointImpl implements IAccountEndPoint {
         return result;
     }
 
+    @Cacheable(value = "account-by-number")
     @RequestLogger(name = "account|find-by-account-number")
     @Override
     public ResponseEntity findByAccountNumber(@RequestParam("accountNumber") String p_AccountNumber) throws EndPointException {
@@ -94,6 +97,7 @@ public class AccountEndPointImpl implements IAccountEndPoint {
         return result;
     }
 
+    @Cacheable(value = "account-by-identity-number")
     @RequestLogger(name = "account|find-by-identity-number")
     @Override
     public ResponseEntity findByIdentityNumber(@RequestParam("identityNumber") String p_IdentityNumber) throws EndPointException {
@@ -112,6 +116,7 @@ public class AccountEndPointImpl implements IAccountEndPoint {
         return result;
     }
 
+    @Cacheable(value = "account-pagination")
     @RequestLogger(name = "account|find-pagination")
     @Override
     public ResponseEntity findPagination(@RequestBody RequestPaginationDTO p_RequestPagination) throws EndPointException {
