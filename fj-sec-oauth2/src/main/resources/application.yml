@@ -44,7 +44,7 @@ spring:
 #============================================================================
 db:
   name : fauzi_jenius_security
-  host : 180.250.242.163
+  host : localhost
   port : 5432
   username : postgres
   password : S1gm4etc2018!
@@ -75,7 +75,7 @@ log :
   file :
     path : /home/fauzi/fj/security/fauzi-security-oauth2.log
   base:
-    path : http://localhost:9001/fauzi-api-logger
+    path : http://localhost:8000/fauzi-api-logger
 
 #============================================================================
 # THREAD

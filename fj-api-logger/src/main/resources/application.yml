@@ -2,7 +2,7 @@
 # SERVER
 #============================================================================
 server:
-  port: 9001
+  port: 8000
   tomcat:
     max-threads : 2000
   servlet:
@@ -14,8 +14,6 @@ server:
 spring:
   application:
     name: fauzi-jenius-logger
-  profiles :
-    active : dev
   data:
     mongodb:
       repositories : ${db.repositories}
@@ -37,12 +35,12 @@ spring:
 #============================================================================
 db:
   name : fj-api-log
-  host : localhost
-  port : 8085
+  host : 180.250.19.229
+  port : 27017
   database : fj-api-log
   authentication-database : admin
-  username : mongo
-  password : mongoP@ssword
+#  username : mongo
+#  password : mongoP@ssword
   repositories : true
   uri : mongodb://localhost/fj-api-log
 
@@ -67,7 +65,7 @@ log :
 # RABBIT MQ
 #============================================================================
 rabbitmq:
-  host : 127.0.0.1
+  host : 180.250.19.229
   port : 5672
   username : guest
   password : guest
