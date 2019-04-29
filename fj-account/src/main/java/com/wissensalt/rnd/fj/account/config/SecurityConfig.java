@@ -1,7 +1,6 @@
 package com.wissensalt.rnd.fj.account.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
  */
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
-@Order(SecurityProperties.BASIC_AUTH_ORDER - 2)
+@Order(value = 0)
 @Configuration
 public class SecurityConfig extends ResourceServerConfigurerAdapter {
 
